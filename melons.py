@@ -3,13 +3,11 @@
 class AbstractMelonOrder(object):
     """Generalized Information for International & Domestic Melon Orders"""
     
-    def __init__(self, species, qty, country_code = "U.S."):
+    def __init__(self, species, qty):
         """Initialize melon order attributes"""
 
-        print cheesecake
         self.species = species
         self.qty = qty
-        self.country_code = country_code
         self.shipped = False
 
     def get_total(self):
@@ -28,18 +26,30 @@ class AbstractMelonOrder(object):
 class DomesticMelonOrder(AbstractMelonOrder):
     """A domestic (in the US) melon order."""
 
-    order_type = "domestic"
-    tax = 0.08
+    def __init__(self, species, qty):
+        super(DomesticMelonOrder, self).__init__(species, qty)
+        self.order_type = "domestic"
+        self.tax = 0.08
+
+
+    # order_type = "domestic"
+    # tax = 0.08
 
 
 class InternationalMelonOrder(AbstractMelonOrder):
     """An international (non-US) melon order."""
 
-    order_type = "international"
-    tax = 0.17
+    def __init__(self, species, qty, country_code):
+        super(InternationalMelonOrder, self).__init__(species, qty)
+        self.order_type = "international"
+        self.tax = 0.17
+        self.country_code = country_code
 
 
-    def get_country_code(self):
-        """Return the country code."""
+    # order_type = "international"
+    # tax = 0.17
 
-        return self.country_code
+    # def get_country_code(self):
+    #     """Return the country code."""
+
+    #     return self.country_code
